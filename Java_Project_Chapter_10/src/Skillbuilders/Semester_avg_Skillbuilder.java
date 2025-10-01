@@ -112,9 +112,6 @@ public class Semester_avg_Skillbuilder {
 		EnterFirstGrade.setColumns(10);
 		Grade_Submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//String grade_1 = First_Grade.getText(); preserved as a comment in case I need them
-				//String grade_2 = Second_Grade.getText();
-				//String grade_3 = Third_Grade.getText();
 				int grade_1 = Integer.parseInt(First_Grade.getText());
 				int grade_2 = Integer.parseInt(Second_Grade.getText());
 				int grade_3 = Integer.parseInt(Third_Grade.getText());
