@@ -119,7 +119,7 @@ public class Semester_avg_Skillbuilder {
 				int grade_2 = Integer.parseInt(Second_Grade.getText());
 				int grade_3 = Integer.parseInt(Third_Grade.getText());
 				int grade_avg = (grade_1 + grade_2 + grade_3)/3;
-				Grade_AVG_Display.setText("Your average grade for the semester is: " + grade_avg);
+				Grade_AVG_Display.setText("Your average grade for the semester is: " + grade_avg + "%.");
 				
 			}
 		});
