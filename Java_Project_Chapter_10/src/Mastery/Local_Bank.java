@@ -64,7 +64,7 @@ public class Local_Bank {
 		
 		JComboBox Action_selection = new JComboBox();
 		Action_selection.setBounds(20, 24, 404, 22);
-		Action_selection.setModel(new DefaultComboBoxModel(new String[] {"Select action", "Deposit", "Withdrawl"}));
+		Action_selection.setModel(new DefaultComboBoxModel(new String[] {"Select action", "deposit", "withdrawl"}));
 		panel.add(Action_selection);
 		
 		JLabel lblNewLabel_2 = new JLabel("Account number:");
@@ -77,7 +77,7 @@ public class Local_Bank {
 		Acntnum.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Amount to deposit/withdrawl:");
-		lblNewLabel_3.setBounds(20, 85, 164, 14);
+		lblNewLabel_3.setBounds(20, 85, 262, 14);
 		panel.add(lblNewLabel_3);
 		
 		depwithd = new JTextField();
@@ -113,6 +113,7 @@ public class Local_Bank {
 		panel.add(crntblnce);
 		
 		JTextArea Transactiondisplay = new JTextArea();
+		Transactiondisplay.setWrapStyleWord(true);
 		Transactiondisplay.setBounds(20, 284, 404, 111);
 		panel.add(Transactiondisplay);
 		Transactiondisplay.setLineWrap(true);
@@ -123,11 +124,11 @@ public class Local_Bank {
 				String actionselect = (java.lang.String) Action_selection.getSelectedItem();
 				int accountnum = Integer.parseInt(Acntnum.getText());
 				int depositorwithdrawl = Integer.parseInt(depwithd.getText());
-				String firstname = String(fstname.getText());
-				String lastname = String(lstname.getText());
+				String firstname = fstname.getText();
+				String lastname = lstname.getText();
 				int currentbalance = Integer.parseInt(crntblnce.getText());
 				int new_balance;
-				if(Action_selection.getSelectedItem().equals("Deposit"))
+				if(Action_selection.getSelectedItem().equals("deposit"))
 				{
 					new_balance = currentbalance + depositorwithdrawl;
 				} else 
@@ -139,8 +140,8 @@ public class Local_Bank {
 					Transactiondisplay.setText("Error! You cannot withdrawl more money than is currently in your account, please try again");
 				} else 
 				{
-					Transactiondisplay.setText("Transaction report: a " + actionselect + " of value " + depositorwithdrawl + " was requested with account number "
-				+ accountnum + " owned by " + String(firstname) + " " + String(lastname) + " the original account balance was: " + currentbalance + " and the new balance is: " + new_balance + 
+					Transactiondisplay.setText("A " + actionselect + " of value " + depositorwithdrawl + " was requested with account number: "
+				+ accountnum + ", owned by: " + firstname + " " + lastname + ". The original account balance was: " + currentbalance + " and the new balance is: " + new_balance + 
 				". Thank you for your transaction");
 				}
 				
