@@ -128,22 +128,27 @@ public class Local_Bank {
 				String lastname = lstname.getText();
 				int currentbalance = Integer.parseInt(crntblnce.getText());
 				int new_balance;
-				if(Action_selection.getSelectedItem().equals("deposit"))
-				{
-					new_balance = currentbalance + depositorwithdrawl;
-				} else 
-				{
-					new_balance = currentbalance - depositorwithdrawl;
+				if (Action_selection.getSelectedItem().equals("Select action")) {
+					Transactiondisplay.setText("Error: You must select to either deposit or withdrawl, please try again.");
+				} else {
+					if(Action_selection.getSelectedItem().equals("deposit"))
+					{
+						new_balance = currentbalance + depositorwithdrawl;
+					} else 
+					{
+						new_balance = currentbalance - depositorwithdrawl;
+					}
+					if(new_balance < 0) 
+					{
+						Transactiondisplay.setText("Error! You cannot withdrawl more money than is currently in your account, please try again.");
+					} else 
+					{
+						Transactiondisplay.setText("A " + actionselect + " of value: " + depositorwithdrawl + "$ was requested with account number: "
+					+ accountnum + ", owned by: " + firstname + " " + lastname + ". The original account balance was: " + currentbalance + "$ and the new balance is: " + new_balance + 
+					"$. Thank you for your transaction");
+					}
 				}
-				if(new_balance <= 0) 
-				{
-					Transactiondisplay.setText("Error! You cannot withdrawl more money than is currently in your account, please try again");
-				} else 
-				{
-					Transactiondisplay.setText("A " + actionselect + " of value " + depositorwithdrawl + " was requested with account number: "
-				+ accountnum + ", owned by: " + firstname + " " + lastname + ". The original account balance was: " + currentbalance + " and the new balance is: " + new_balance + 
-				". Thank you for your transaction");
-				}
+
 				
 			}
 
