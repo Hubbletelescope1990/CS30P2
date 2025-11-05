@@ -15,7 +15,10 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
 public class Stats_part1_GUI {
@@ -50,7 +53,7 @@ public class Stats_part1_GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 373);
+		frame.setBounds(100, 100, 450, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -66,6 +69,7 @@ public class Stats_part1_GUI {
 		panel.add(Title);
 		
 		JTextArea ResultArea = new JTextArea();
+		ResultArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		ResultArea.setRows(15);
 		ResultArea.setColumns(40);
 		ResultArea.setEditable(false);
@@ -73,7 +77,7 @@ public class Stats_part1_GUI {
 		ResultArea.setWrapStyleWord(true);
 		ResultArea.setLineWrap(true);
 		ResultArea.setBackground(new Color(240, 240, 240));
-		ResultArea.setBounds(10, 57, 414, 183);
+		ResultArea.setBounds(10, 57, 414, 287);
 		panel.add(ResultArea);
 		
 		JButton AnalyzeButton = new JButton("Analyze scores");
@@ -91,15 +95,65 @@ public class Stats_part1_GUI {
 				String stuName, score;
 				double scoreValue;
 				
-				double lowSsore = 100;
-				double highschore = 0;
+				double lowScore = 100;
+				double highScore = 0;
 				double avgScore;
 				double totalScore = 0;
 				int numScore = 0;
+				
+				NumberFormat percent = NumberFormat.getPercentInstance();
+				
+				StringBuilder output = new StringBuilder();
+				
+				try {
+					in = new FileReader(dataFile);
+					readFile = new BufferedReader(in);
+					
+					output.append("Student scores: \n");
+					output.append("----------------\n");
+					
+					while((stuName = readFile.readLine()) != null) {
+						score = readFile.readLine();
+						numScore += 1;
+						scoreValue = Double.parseDouble(score);
+						
+						output.append(stuName + " " + percent.format(scoreValue/100) + "\n");
+						totalScore += scoreValue;
+						
+						if(scoreValue < lowScore) {
+							lowScore = scoreValue;
+						}
+						if(scoreValue > highScore) {
+							highScore = scoreValue;
+						}
+					}//end of while loop
+					
+					avgScore = totalScore / numScore;
+					
+					output.append("\n Statistics\n");
+					output.append("--------------\n");
+					
+					output.append("Low score: " + percent.format(lowScore/100) + "\n");
+					output.append("High score: " + percent.format(highScore/100) + "\n");
+					output.append("Average score: " + percent.format(avgScore/100) + "\n");
+					output.append("Total students: " + numScore + "\n");
+					
+					ResultArea.setText(output.toString());
+					
+					readFile.close();
+					in.close();
+					
+				} catch(FileNotFoundException ex) {
+					System.out.println("Fire could not be found.");
+					System.out.println("filenotFoundException: " + ex.getMessage());
+				} catch(IOException ex) {
+					System.out.println("Error: " + ex.getMessage());
+				System.err.print("IOException: " + ex.getMessage());
+				}
 			}
 		});
 		AnalyzeButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		AnalyzeButton.setBounds(95, 262, 221, 49);
+		AnalyzeButton.setBounds(96, 355, 221, 49);
 		panel.add(AnalyzeButton);
 	}
 }
