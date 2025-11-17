@@ -169,7 +169,7 @@ public class Stats_oart2_GUI {
 					
 				ResultArea.setText("Data written to file: " + filename + "\\n\n");
 				ResultArea.append("Students entered:\n");
-				ResultArea.append("-------------------------");
+				ResultArea.append("-------------------------\n");
 				ResultArea.append(studentData.toString());
 				ResultArea.append("\nFile created successfully!");
 				}
