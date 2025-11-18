@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -168,7 +167,7 @@ public class Stats_oart2_GUI {
 				}
 					
 				ResultArea.setText("Data written to file: " + filename + "\\n\n");
-				ResultArea.append("Students entered:\n");
+				ResultArea.append("Students entered:" + numStudentsText + "\n");
 				ResultArea.append("-------------------------\n");
 				ResultArea.append(studentData.toString());
 				ResultArea.append("\nFile created successfully!");
