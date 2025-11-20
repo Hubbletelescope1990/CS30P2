@@ -6,10 +6,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class StudentSemesterAverageGUI {
 
@@ -97,9 +108,9 @@ public class StudentSemesterAverageGUI {
 		lblAverage.setBounds(10, 201, 202, 40);
 		panel.add(lblAverage);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 235, 681, 320);
-		panel.add(textArea);
+		JTextArea Display = new JTextArea();
+		Display.setBounds(10, 235, 681, 320);
+		panel.add(Display);
 		
 		stuname = new JTextField();
 		stuname.setBounds(222, 23, 456, 20);
@@ -135,12 +146,125 @@ public class StudentSemesterAverageGUI {
 		grade4.setColumns(10);
 		grade4.setBounds(222, 186, 456, 20);
 		panel.add(grade4);
-		
+		String FileName = "C:\\Users\\38247004\\git\\CS30P2\\Java_Project_Chapter_11\\src\\Mastery\\Studentsemavg";
 		JButton Savetofile = new JButton("Save to file");
+		Savetofile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String studentname = stuname.getText();
+				String gradelevel = stugradelevel.getText();
+				String semester = semesternum.getText();
+				int Grade1 = Integer.parseInt(grade1.getText());
+				int Grade2 = Integer.parseInt(grade2.getText());
+				int Grade3 = Integer.parseInt(grade3.getText());
+				int Grade4 = Integer.parseInt(grade4.getText());
+				int average = (Grade1 + Grade2 + Grade3 + Grade4)/4;
+				
+				String Grade1strn = grade1.getText();
+				String Grade2strn = grade2.getText();
+				String Grade3strn = grade3.getText();
+				String Grade4strn = grade4.getText();
+				String averagestrn = Integer.toString(average);
+				int catchyesorno = 0;
+				if (studentname.isEmpty() || gradelevel.isEmpty() || semester.isEmpty() || Grade1 == 0 || Grade2 == 0 || Grade3 == 0 || Grade4 == 0) 
+				{
+					Display.setText("Error! One or more of the required fields is either empty or has invalid data, please try again");
+				} else 
+				{
+					File dataFile = new File(FileName);
+					FileWriter out;
+					try 
+					{
+					
+						out = new FileWriter(dataFile, true);
+						BufferedWriter WriteFile = new BufferedWriter(out);
+						
+						WriteFile.write("name: " + studentname);
+						WriteFile.newLine();
+						WriteFile.write("Grade level: " + gradelevel);
+						WriteFile.newLine();
+						WriteFile.write("Semester: " + semester);
+						WriteFile.newLine();
+						WriteFile.write("Grade 1: " + Grade1strn);
+						WriteFile.newLine();
+						WriteFile.write("Grade 2: " + Grade2strn);
+						WriteFile.newLine();
+						WriteFile.write("Grade 3: " + Grade3strn);
+						WriteFile.newLine();
+						WriteFile.write("Grade 4: " + Grade4strn);
+						WriteFile.newLine();
+						WriteFile.write("Average: " + averagestrn);
+						WriteFile.newLine();
+						
+						
+						WriteFile.close();
+						out.close();
+					} catch(IOException ex) 
+					{
+						JOptionPane.showMessageDialog(null, "File could not be created: " + ex.getMessage(), "File error", JOptionPane.ERROR_MESSAGE);
+						catchyesorno = 1;
+					}
+					if (catchyesorno != 1) {
+						Display.setText("Data saved to file!");
+					}
+				}
+				
+				
+			}
+		});
 		Savetofile.setBounds(159, 212, 173, 23);
 		panel.add(Savetofile);
 		
 		JButton Viewfile = new JButton("View file content");
+		Viewfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Display.setText("");
+				File dataFile = new File(FileName);
+		        FileReader in;
+		        BufferedReader readFile;
+		        String studentname, gradelevel, semester, grade1, grade2, grade3, grade4, average;
+		        
+		        try {
+		        	
+		        	 in = new FileReader(dataFile);
+			         readFile = new BufferedReader(in);
+			         
+			         Display.append("Semester average display:\n");
+			            Display.append("---------------\n");
+			         
+					while ((studentname = readFile.readLine()) != null) {
+					    gradelevel = readFile.readLine();
+					    semester = readFile.readLine();
+					    grade1 = readFile.readLine();
+					    grade2 = readFile.readLine();
+					    grade3 = readFile.readLine();
+					    grade4 = readFile.readLine();
+					    average = readFile.readLine();
+					    
+					    Display.append(studentname + "\n");
+					    Display.append(gradelevel + "\n");
+					    Display.append(semester + "\n");
+					    Display.append(grade1 + "\n");
+					    Display.append(grade2 + "\n");
+					    Display.append(grade3 + "\n");
+					    Display.append(grade4 + "\n");
+					    Display.append(average + "\n");
+					    Display.append(" \n");
+					    
+					}
+				} catch (FileNotFoundException ex) {
+		            JOptionPane.showMessageDialog(null, 
+			                "File does not exist or could not be found.\n" +
+			                "Please check the file path: " + dataFile.getPath(), 
+			                "File Not Found", 
+			                JOptionPane.ERROR_MESSAGE);
+			        } catch (IOException ex) {
+			            JOptionPane.showMessageDialog(null, 
+			                "Problem reading file: " + ex.getMessage(), 
+			                "Read Error", 
+			                JOptionPane.ERROR_MESSAGE);
+			        }
+			}
+		});
 		Viewfile.setBounds(370, 212, 173, 23);
 		panel.add(Viewfile);
 	}
