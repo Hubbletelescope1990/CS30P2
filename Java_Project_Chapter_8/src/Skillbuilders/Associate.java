@@ -1,6 +1,6 @@
 package Skillbuilders;
 
-public abstract class Associate extends Employee {
+public class Associate extends Employee {
 	
 	private double hourlyPayRate;
 	
@@ -14,9 +14,9 @@ public abstract class Associate extends Employee {
 	{
 		double payEarned;
 		
-		if (hours < 40) 
+		if (hours > 40) 
 		{
-			payEarned =((hourlyPayRate * 40) + (hourlyPayRate * 1.5));
+			payEarned =((hourlyPayRate * 40) + (hourlyPayRate * 1.5)*(hours - 40));
 		} else 
 		{
 			payEarned = hourlyPayRate * hours;
