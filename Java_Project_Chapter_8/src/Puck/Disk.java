@@ -1,4 +1,5 @@
-package Skillbuilders;
+package Puck;
+
 /**
  * Disk class.
  */

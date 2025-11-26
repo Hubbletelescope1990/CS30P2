@@ -1,4 +1,4 @@
-package Skillbuilders;
+package Puck;
 
 class Circle {
 	private static double PI = 3.14;
