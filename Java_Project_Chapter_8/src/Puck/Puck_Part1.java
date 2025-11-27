@@ -16,9 +16,9 @@ public class Puck_Part1 extends Disk
 	
 	
 	//Returns weight of the Puck
-	public double getWeight() 
+	public String getWeight() 
 	{
-		return(weight);
+		return("The puck weighs: " + weight + " ounces.");
 	}
 	
 	//Returns the division of the Puck

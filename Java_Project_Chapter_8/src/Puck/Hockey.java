@@ -23,35 +23,36 @@ public class Hockey {
 		do {
 			
 		choice = 10;
-		String puck;
+		Puck_Part1 puck = Puck1;
 		
 		System.out.println("Weclome to the hockey puck database. The information of 8 pucks is within our database, please make your selection below:");
 		System.out.println("0: What data does this database store?");
 		System.out.println("1-8: Select a puck to perform further action with.");
+		System.out.println("9: Terminate the application");
 		choice = input.nextInt();
 		if (choice == 1) {
-			puck = "Puck1";
+			puck = Puck1;
 		}
 		if (choice == 2) {
-			puck = "Puck2";
+			puck = Puck2;
 		}
 		if (choice == 3) {
-			puck = "Puck3";
+			puck = Puck3;
 		}
 		if (choice == 4) {
-			puck = "Puck4";
+			puck = Puck4;
 		}
 		if (choice == 5) {
-			puck = "Puck5";
+			puck = Puck5;
 		}
 		if (choice == 6) {
-			puck = "Puck6";
+			puck = Puck6;
 		}
 		if (choice == 7) {
-			puck = "Puck7";
+			puck = Puck7;
 		}
 		if (choice == 8) {
-			puck = "Puck8";
+			puck = Puck8;
 		}
 		
 		if (choice == 0) 
@@ -64,13 +65,23 @@ public class Hockey {
 			System.out.println("C: Compares the puck to another within this database.");
 			System.out.println("A: Retrieves all the pucks information at once.");
 			System.out.println("Q: Returns to the main menu.");
+			action = input.next();
 			
-			if (action == "W") {
-				System.out.println("Puck " + choice + " weighs: " + Puck1.getWeight() + " ounces.");
+			if (action.equalsIgnoreCase("W")) {
+				System.out.println(puck.getWeight());
 			}
+			if (action.equalsIgnoreCase("D")) {
+				System.out.println(puck.getDivision());
+			}
+			//Placeholder for comparison action
+			if (action.equalsIgnoreCase("A")) {
+				System.out.println(puck.toString());
+			}
+			
 		}
 		
 		}while(choice != 9);
+		System.out.println("Thank you for using the hockey puck database, have a good day.");
 	}
 
 }
