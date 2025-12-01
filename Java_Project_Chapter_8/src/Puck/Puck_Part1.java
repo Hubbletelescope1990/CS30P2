@@ -33,8 +33,28 @@ public class Puck_Part1 extends Disk
 		}
 	}
 	
-	public String toString() {
-		return(super.toString() + "The hockey puck weighs: " + weight + ", standard puck: " + standard + ", youth puck: " + youth + ".");
+	public boolean equals(Object d) 
+	{
+		Puck_Part1 testObj = (Puck_Part1)d;
+		
+		if (testObj.getRadius() == super.getRadius() && testObj.getThickness() == super.getThickness() && testObj.weight == weight && testObj.standard == standard && testObj.youth == youth) 
+		{
+			return(true);
+		} else {
+			return(false);
+		}
+		
+	}
+	
+	public String toString() {//Returns all of the information of the puck in one go
+		if (standard == true && youth != true) {
+			return(super.toString() + " The hockey puck weighs: " + weight + "g, it is a standard puck.");
+		}
+		if (standard == false && youth != false) {
+			return(super.toString() + " The hockey puck weighs: " + weight + "g, it is a youth puck.");
+		} else {
+			return("Error: This puck has beem classed as both a standard and a youth puck, a report has been submitted and we will look into it shortly. We apologize for any inconvenience.");
+		}
 	}
 	
 	
