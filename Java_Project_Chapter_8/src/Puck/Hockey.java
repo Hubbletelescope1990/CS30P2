@@ -65,6 +65,7 @@ public class Hockey {
 		} else if (choice <= 9){
 			System.out.println("What would you like to do with puck " + choice + "?");
 			System.out.println("W: Retrieves the pucks weight.");
+			System.out.println("R: Compares just the weight of one puck with another.");
 			System.out.println("D: Retrieves the pucks division.");
 			System.out.println("C: Compares the puck to another within this database.");
 			System.out.println("A: Retrieves all the pucks information at once.");
@@ -80,34 +81,34 @@ public class Hockey {
 			if (action.equalsIgnoreCase("C"))//Placeholder for comparison action
 			{
 				int eqselect;
-				System.out.println("Which puck do you with to compare puck " + choice + " to?");
+				System.out.println("Which puck do you want to compare puck " + choice + " to?");
 				eqselect = input.nextInt();
 				Puck_Part1 eqpuck = null;
 				if (eqselect == 1) {
 					eqpuck = Puck1;
 				}
-				if (eqselect == 2) {
+				else if (eqselect == 2) {
 					eqpuck = Puck2;
 				}
-				if (eqselect == 3) {
+				else if (eqselect == 3) {
 					eqpuck = Puck3;
 				}
-				if (eqselect == 4) {
+				else if (eqselect == 4) {
 					eqpuck = Puck4;
 				}
-				if (eqselect == 5) {
+				else if (eqselect == 5) {
 					eqpuck = Puck5;
 				}
-				if (eqselect == 6) {
+				else if (eqselect == 6) {
 					eqpuck = Puck6;
 				}
-				if (eqselect == 7) {
+				else if (eqselect == 7) {
 					eqpuck = Puck7;
 				}
-				if (eqselect == 8) {
+				else if (eqselect == 8) {
 					eqpuck = Puck8;
 				} 
-				if (eqselect == 9) {
+				else if (eqselect == 9) {
 					eqpuck = Puck9;
 				} else 
 				{
@@ -127,6 +128,61 @@ public class Hockey {
 					}
 				}
 			}
+			//puck part 2 compare to method
+			if (action.equalsIgnoreCase("R"))//Placeholder for comparison action
+			{
+				int eqselect;
+				System.out.println("Which puck do you want to compare puck " + choice + "s weight to?");
+				eqselect = input.nextInt();
+				Puck_Part1 eqpuck = null;
+				if (eqselect == 1) {
+					eqpuck = Puck1;
+				}
+				else if (eqselect == 2) {
+					eqpuck = Puck2;
+				}
+				else if (eqselect == 3) {
+					eqpuck = Puck3;
+				}
+				else if (eqselect == 4) {
+					eqpuck = Puck4;
+				}
+				else if (eqselect == 5) {
+					eqpuck = Puck5;
+				}
+				else if (eqselect == 6) {
+					eqpuck = Puck6;
+				}
+				else if (eqselect == 7) {
+					eqpuck = Puck7;
+				}
+				else if (eqselect == 8) {
+					eqpuck = Puck8;
+				} 
+				else if (eqselect == 9) {
+					eqpuck = Puck9;
+				} else 
+				{
+					System.out.println("Error: You have entered an invalid selection for a puck.");
+				}
+				
+				if (eqselect == choice) 
+				{
+					System.out.println("Error: You cannot compare a puck to itself");
+				} else 
+				{
+					if (puck.compareTo(eqpuck) == -1) {
+						System.out.println("Puck " + choice + " is lighter than puck " + eqselect + ".");
+					} else if (puck.compareTo(eqpuck) == 1)
+					{
+						System.out.println("Puck " + choice + " is heavier puck " + eqselect + ".");
+					} else {
+						System.out.println("Puck " + choice + " is the same weight as puck " + eqselect + ".");
+					}
+				}
+			}
+			
+			
 			if (action.equalsIgnoreCase("A")) {
 				System.out.println(puck.toString());
 			}

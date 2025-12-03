@@ -2,7 +2,7 @@ package Puck;
 
 public class Puck_Part1 extends Disk 
 {
-	
+	//Puck part 2 is also included in this class
 	private double weight;
 	private boolean standard;
 	private boolean youth;
@@ -54,6 +54,23 @@ public class Puck_Part1 extends Disk
 			return(super.toString() + " The hockey puck weighs: " + weight + "g, it is a youth puck.");
 		} else {
 			return("Error: This puck has beem classed as both a standard and a youth puck, a report has been submitted and we will look into it shortly. We apologize for any inconvenience.");
+		}
+		
+	}
+	
+	//Puck part 2 compare method
+	public int compareTo(Object c) {
+		Puck_Part1 testPuck = (Puck_Part1)c;
+		
+		if (weight < testPuck.weight) 
+		{
+			return(-1);
+		} else if (weight == testPuck.weight) 
+		{
+			return(0);
+		} else 
+		{
+			return(1);
 		}
 	}
 	
