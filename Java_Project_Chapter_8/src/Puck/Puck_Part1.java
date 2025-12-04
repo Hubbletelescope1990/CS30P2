@@ -57,8 +57,7 @@ public class Puck_Part1 extends Disk
 		}
 		
 	}
-	
-	//Puck part 2 compare method
+	//Puck part 2 compareTo method
 	public int compareTo(Object c) {
 		Puck_Part1 testPuck = (Puck_Part1)c;
 		
