@@ -14,7 +14,7 @@ public class Linked_list_tester
 		System.out.println("List has: " + list.size() + " items.");
 		System.out.println(list.toString());
 		
-		
+		//
 		
 	}
 
