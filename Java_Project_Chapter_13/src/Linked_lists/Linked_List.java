@@ -69,7 +69,7 @@ public class Linked_List
 		}
 		else
 		{
-			return("There are no items in the list/");
+			return("There are no items in the list.");
 		}
 	}
 	
