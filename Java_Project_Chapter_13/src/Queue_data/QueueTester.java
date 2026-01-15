@@ -14,7 +14,8 @@ public class QueueTester {
 		System.out.println("Front of queue: " + q1.front());
 		System.out.println("Size of queue: " + q1.size());
 		
-		q1.dequeue();
+		Object s = q1.dequeue();
+		System.out.println(s);
 		
 		System.out.println("Front of queue: " + q1.front());
 		System.out.println("Size of queue: " + q1.size());
